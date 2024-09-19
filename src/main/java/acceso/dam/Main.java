@@ -13,7 +13,7 @@ public class Main {
             System.out.println("Elige opción:");
             System.out.println("1.- Añadir usuario");
             System.out.println("2.- Buscar usuario");
-            System.out.println("3.- Total ingre1sos");
+            System.out.println("3.- Total ingresos");
             System.out.println("0.- Salir");
             Scanner sc = new Scanner(System.in);
             try {
@@ -27,6 +27,7 @@ public class Main {
                             String password = sc.next();
                             System.out.println("Ingrese el descuento a aplicar:");
                             double descuento = sc.nextDouble();
+                            // ¡Manejar errores y dejar claro opción!
                             System.out.println("Indique PREMIUM si el usuario desea acceder a los servicios especiales:");
                             String plan = sc.next();
                             boolean premium = false;
@@ -45,12 +46,12 @@ public class Main {
                         }
                         break;
                     case 2:
-                        for (Object usuario : listaUsuarios) {
-                            System.out.println(usuario);
-                        }
+                        System.out.println("Ingrese el email del usuario que desea buscar:");
+                        String email = sc.next();
+                        CRUDUsuario.buscarUsuario(listaUsuarios, email);
                         break;
                     case 3:
-                        System.out.println("Total ingresos.");
+                        CRUDUsuario.totalIngresos(listaUsuarios);
                         break;
                     case 0:
                         salir = true;

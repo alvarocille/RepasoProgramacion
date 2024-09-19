@@ -1,7 +1,7 @@
 package acceso.dam;
 
 public class Usuario extends Cliente {
-    private static boolean premium;
+    private boolean premium;
 
     public Usuario() {
     }
@@ -15,7 +15,13 @@ public class Usuario extends Cliente {
         this.premium = premium;
     }
 
-    public static boolean isPremium() {
+    public boolean isPremium() {
         return premium;
+    }
+
+    public double getCuota() {
+        double extra = 0;
+        if (this.premium == true) { extra = 3; }
+        return 10 - this.getDescuento() + extra;
     }
 }
