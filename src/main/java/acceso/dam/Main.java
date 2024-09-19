@@ -3,6 +3,7 @@ package acceso.dam;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -27,17 +28,22 @@ public class Main {
                             String password = sc.next();
                             System.out.println("Ingrese el descuento a aplicar:");
                             double descuento = sc.nextDouble();
-                            // ¡Manejar errores y dejar claro opción!
                             System.out.println("Indique PREMIUM si el usuario desea acceder a los servicios especiales:");
-                            String plan = sc.next();
                             boolean premium = false;
-                            if (plan.equals("PREMIUM")) {
-                                premium = true;
+                            try {
+                                String plan = sc.next();
+                                String planMayus = plan.toUpperCase();
+                                if (planMayus.equals("PREMIUM")) {
+                                    premium = true;
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Indique una opción válida.");
                             }
                             try {
                                 Usuario usuario = new Usuario(email, password, descuento, premium);
                                 listaUsuarios = CRUDUsuario.insertarUsuario(listaUsuarios, usuario);
-
+                                double cuota = usuario.getCuota();
+                                System.out.printf("Ha sio registrado el usuario con correo %s, contraseña %s y cuota de %.2f.%n", email, password, cuota);
                             } catch (Exception e) {
                                 System.out.println("Error al añadir el usuario:" + e.getMessage());
                             }

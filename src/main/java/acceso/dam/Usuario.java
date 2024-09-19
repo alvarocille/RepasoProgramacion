@@ -21,7 +21,7 @@ public class Usuario extends Cliente {
 
     public double getCuota() {
         double extra = 0;
-        if (this.premium == true) { extra = 3; }
-        return 10 - this.getDescuento() + extra;
+        if (this.premium == true) { extra = 15; }
+        return 20.5 - this.getDescuento() + extra;
     }
 }
